@@ -1,6 +1,47 @@
-<tool id="filters_generic" name="Filters [generic]" version="stat_2014.08.22">
-  <description>Removes elements according to : numeric or qualitative values</description>
-  <command></command>
+<tool id="filter" name="Filter" version="stat_2014.09.04">
+  <description>Removes elements according to numerical or qualitative values</description>
+  <command interpreter="Rscript">
+	filter_wrap.R
+      dataMatrix_in "$dataMatrix_in"
+      sampleMetadata_in "$sampleMetadata_in"
+      variableMetadata_in "$variableMetadata_in"
+ 
+	  Numeric "${numeric_condition.Factors}"
+	  #if str($numeric_condition.Factors) == 'TRUE':
+		#for $i in $numeric_condition.numeric_repeat:
+		  num_file "${i.num_file}"
+		  parm_col_num "${i.parm_col_num}"
+		  Interval "${i.interval_condition.interval}"
+		  #if str($i.interval_condition.interval) == 'lower':
+		    low_value "${i.interval_condition.low_value}"
+		  #end if
+		  #if str($interval_condition.interval) == 'upper':
+		    up_value "${i.interval_condition.up_value}"
+		  #end if
+		  #if str($interval_condition.interval) == 'between':
+		    up_value "${i.interval_condition.up_value}"
+		    low_value "${i.interval_condition.low_value}"
+		  #end if
+		  #if str($interval_condition.interval) == 'extremity':
+		    low_value "${i.interval_condition.low_value}"
+		    up_value "${i.interval_condition.up_value}"
+		  #end if
+		#end for
+	  #end if
+      
+      Factors "${qualitative_condition.Factors}"
+      #if str($qualitative_condition.Factors) == 'TRUE':
+        #for $i in $qualitative_condition.qualitative_repeat:
+		  qual_file "${i.qual_file}"
+		  factor_col "${i.factor_col}"
+		  factors_value "${i.factors_value}"
+        #end for
+      #end if
+      
+      dataMatrix_out "$dataMatrix_out"
+      sampleMetadata_out "$sampleMetadata_out"
+      variableMetadata_out "$variableMetadata_out"
+  </command>
   
   <inputs>
     <param name="dataMatrix_in" type="data" label="Data Matrix file " help="" format="tabular" />
@@ -78,7 +119,7 @@
 ---------------------------------------------------
 
 ==============
-Filters
+Filter
 ==============
 
 -----------
