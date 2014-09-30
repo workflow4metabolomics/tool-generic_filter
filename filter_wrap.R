@@ -38,13 +38,13 @@ if(!is.null(args$factor_col)){
 	}
 }	
 
-filter(args$dataMatrix_in, args$sampleMetadata_in, args$variableMetadata_in,
-       args$Factors, list_fact,
-       args$dataMatrix_out, args$sampleMetadata_out, args$variableMetadata_out)
+filters(args$dataMatrix_in, args$sampleMetadata_in, args$variableMetadata_in,
+        args$Factors, list_fact,
+        args$dataMatrix_out, args$sampleMetadata_out, args$variableMetadata_out)
 
-#filter(ion.file.in, meta.samp.file.in, meta.ion.file.in,
-#       FACT, ls.fact,
-#       ion.file.out, meta.samp.file.out, meta.ion.file.out)
+#filters(ion.file.in, meta.samp.file.in, meta.ion.file.in,
+#        FACT, ls.fact,
+#        ion.file.out, meta.samp.file.out, meta.ion.file.out)
 
 #delete the parameters to avoid the passage to the next tool in .RData image
 rm(args)

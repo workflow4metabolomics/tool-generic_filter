@@ -26,9 +26,9 @@ if(FALSE){
   
 }
 
-filter <- function(ion.file.in, meta.samp.file.in, meta.ion.file.in,
-                   FACT, ls.fact,
-                   ion.file.out, meta.samp.file.out, meta.ion.file.out){
+filters <- function(ion.file.in, meta.samp.file.in, meta.ion.file.in,
+                    FACT, ls.fact,
+                    ion.file.out, meta.samp.file.out, meta.ion.file.out){
   # This function allows to filter variables and samples according to factors or numerical values. 
   # It needs 3 datasets: the data matrix, the variables' metadata, the samples' metadata. 
   # It generates 3 new datasets corresponding to the 3 inputs filtered. 
@@ -95,11 +95,11 @@ write.table(meta.ion.data, meta.ion.file.out, sep="\t", row.names=FALSE, quote=F
 }
 
 
-} # end of filter function
+} # end of filters function
 
 
 # Typical function call
-#filter(ion.file.in, meta.samp.file.in, meta.ion.file.in, 
-#       FACT, ls.fact,
-#       ion.file.out, meta.samp.file.out, meta.ion.file.out)
+#filters(ion.file.in, meta.samp.file.in, meta.ion.file.in, 
+#        FACT, ls.fact,
+#        ion.file.out, meta.samp.file.out, meta.ion.file.out)
 
