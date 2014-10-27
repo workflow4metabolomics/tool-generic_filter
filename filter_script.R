@@ -4,6 +4,7 @@
 # User: Galaxy                                                                                 #
 # Starting date: 03-09-2014                                                                    #
 # V-1.0: Restriction of old filter script to Filter according to factors                       #
+# V-1.1: Choice of metadata table for filtering added ; data check added ; handling of NA ;    #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix ; sampleMetadata ; variableMetadata                                  #
@@ -80,7 +81,7 @@ if(FACT){
                    "\nWarning: no '",ls.fact[[i]][1],"' column detected in ",ls.fact[[i]][3],
                    " metadata!","\nFiltering impossible for this factor.\n-------\n") 
     }else{
-    if(!(ls.fact[[i]][2]%in%levels(as.factor(meta.samp.data[,numcol])))){
+    if((!(ls.fact[[i]][2]%in%levels(as.factor(metadata[,numcol]))))&((ls.fact[[i]][2]!="NA")|(length(which(is.na(metadata[,numcol])))==0))){
       err.stock <- c(err.stock,"\n-------",
                      "\nWarning: no '",ls.fact[[i]][2],"' level detected in '",
                      ls.fact[[i]][1],"' column (",ls.fact[[i]][3]," metadata)!\n",
@@ -90,6 +91,8 @@ if(FACT){
     # Filtering
     if(length(which(metadata[,numcol]==ls.fact[[i]][2]))!=0){ #if the level still exists in the data
       metadata <- metadata[-c(which(metadata[,numcol]==ls.fact[[i]][2])),]
+	}else{ #to treat the special case of "NA" level
+	  if(ls.fact[[i]][2]=="NA"){metadata <- metadata[-c(which(is.na(metadata[,numcol]))),]}
 	}
 	
 	# Extension to the tables
