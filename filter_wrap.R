@@ -8,6 +8,7 @@
 # Original data: used with filter_script.R                                                     #
 # Starting date: 04-09-2014                                                                    #
 # V-1: Restriction of old filter wrapper to Filter according to factors                        #
+# V-1.1: Modification to allow the choice of meta-data table for filtering                     #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix.txt ; sampleMetadata.txt ; variableMetadata.txt                      #
@@ -33,8 +34,8 @@ if(length(args) < 8){ stop("NOT enough argument !!!") }
 
 list_fact <- NULL
 if(!is.null(args$factor_col)){
-	for( i in which(names(args)=="factor_col") ){
-		list_fact <- c(list_fact, list(c(args[[i]], args[[i+1]])))
+	for( i in which(names(args)=="qual_file") ){
+		list_fact <- c(list_fact, list(c(args[[i+1]], args[[i+2]], args[[i]])))
 	}
 }	
 

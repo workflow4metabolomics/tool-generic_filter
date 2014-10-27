@@ -22,7 +22,7 @@ if(FALSE){
   meta.samp.file.out <- "test/ressources/outputs/ex_data_PROTOCOLE1_fl.txt"  #tab file
   meta.ion.file.out <- "test/ressources/outputs/ex_data_METAION_fl.txt"  #tab file
   
-  FACT <- FALSE ; if(FACT){ls.fact <- list(c("3","A"),c("6","s1"))}else{ls.fact <- NULL}
+FACT <- TRUE ; if(FACT){ls.fact <- list(c("centre","C","sample"),c("var2","A","variable"))}else{ls.fact <- NULL}
   
 }
 
@@ -57,24 +57,37 @@ if(FACT){
   # For each factor to filter
   for(i in 1:length(ls.fact)){
     
+	# Which metadata table is concerned
+	if(ls.fact[[i]][3]=="sample"){metadata <- meta.samp.data}else{metadata <- meta.ion.data}
+	
     # Checking the columns and factors variables
-    numcol <- as.numeric(ls.fact[[i]][1])
-    if(!(numcol%in%(1:ncol(meta.samp.data)))) {
+    numcol <- which(colnames(metadata)==ls.fact[[i]][1])
+    if(length(numcol)==0) {
     err.stock <- c(err.stock,"\n-------",
-                   "\nWarning: no column ",ls.fact[[i]][1]," detected in Sample meta-data !",
-                   "\nFiltering impossible for this factor.\n-------\n") 
+                   "\nWarning: no '",ls.fact[[i]][1],"' column detected in ",ls.fact[[i]][3],
+                   " metadata!","\nFiltering impossible for this factor.\n-------\n") 
     }else{
     if(!(ls.fact[[i]][2]%in%levels(as.factor(meta.samp.data[,numcol])))){
       err.stock <- c(err.stock,"\n-------",
-                     "\nWarning: no ",ls.fact[[i]][2]," level detected in column ",numcol,
-                     " (sample meta-data) !\nFiltering impossible for this factor.\n-------\n")
+                     "\nWarning: no '",ls.fact[[i]][2],"' level detected in '",
+                     ls.fact[[i]][1],"' column (",ls.fact[[i]][3]," metadata)!\n",
+					 "Filtering impossible for this factor.\n-------\n")
     }else{
       
     # Filtering
-    if(length(which(meta.samp.data[,numcol]==ls.fact[[i]][2]))!=0){
-      meta.samp.data <- meta.samp.data[-c(which(meta.samp.data[,numcol]==ls.fact[[i]][2])),]
+    if(length(which(metadata[,numcol]==ls.fact[[i]][2]))!=0){ #if the level still exists in the data
+      metadata <- metadata[-c(which(metadata[,numcol]==ls.fact[[i]][2])),]
+	}
+	
+	# Extension to the tables
+	if(ls.fact[[i]][3]=="sample"){
+	  meta.samp.data <- metadata
       ion.data <- ion.data[,c(1,which(colnames(ion.data)%in%meta.samp.data[,1]))]
-    }
+	}else{
+	  meta.ion.data <- metadata
+      ion.data <- ion.data[which(ion.data[,1]%in%meta.ion.data[,1]),]
+	}
+
   }}}
 
 } # end if(FACT)
