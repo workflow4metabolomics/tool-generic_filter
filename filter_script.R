@@ -5,6 +5,7 @@
 # Starting date: 03-09-2014                                                                    #
 # V-1.0: Restriction of old filter script to Filter according to factors                       #
 # V-1.1: Choice of metadata table for filtering added ; data check added ; handling of NA ;    #
+#        check for minimum remaining data                                                      #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix ; sampleMetadata ; variableMetadata                                  #
@@ -109,6 +110,17 @@ if(FACT){
 } # end if(FACT)
 
 
+# Check if at least one sample and one variable remain -----------------------------
+
+if(nrow(meta.samp.data)==0){
+  stop("\n /!\\ Your filtering options lead to no more sample in your data matrix!\n",
+       "Think about reducing your number of filter.")
+}
+
+if(nrow(meta.ion.data)==0){
+  stop("\n /!\\ Your filtering options lead to no more variable in your data matrix!\n",
+       "Think about reducing your number of filter.")
+}
 
 # Output -------------------------------------------
 
