@@ -7,6 +7,7 @@
 # V-1.1: Choice of metadata table for filtering added ; data check added ; handling of NA ;    #
 #        check for minimum remaining data                                                      #
 # V-1.2: Minor modifications in script layout                                                  #
+# V-2.0: Addition of numerical filter                                                          #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix ; sampleMetadata ; variableMetadata                                  #
@@ -24,13 +25,15 @@ if(FALSE){
   ion.file.out <- "test/ressources/outputs/ex_data_IONS_fl.txt"  #tab file
   meta.samp.file.out <- "test/ressources/outputs/ex_data_PROTOCOLE1_fl.txt"  #tab file
   meta.ion.file.out <- "test/ressources/outputs/ex_data_METAION_fl.txt"  #tab file
+
+NUM <- TRUE ; if(NUM){ls.num<-list(c("sample","injectionOrder","upper","20"),c("variable","var1","extremity","0.12","500"))}else{ls.num<-NULL}
   
 FACT <- TRUE ; if(FACT){ls.fact<-list(c("centre","C","sample"),c("var2","A","variable"))}else{ls.fact<-NULL}
   
 }
 
 filters <- function(ion.file.in, meta.samp.file.in, meta.ion.file.in,
-                    FACT, ls.fact,
+                    NUM, ls.num, FACT, ls.fact,
                     ion.file.out, meta.samp.file.out, meta.ion.file.out){
   # This function allows to filter variables and samples according to factors or numerical values. 
   # It needs 3 datasets: the data matrix, the variables' metadata, the samples' metadata. 
@@ -39,6 +42,8 @@ filters <- function(ion.file.in, meta.samp.file.in, meta.ion.file.in,
   # Parameters:
   # - xxx.in: input files' access
   # - xxx.out: output files' access
+  # - NUM: filter according to numerical variables yes/no
+  # | > ls.num: numerical variables' list for filter
   # - FACT: filter according to factors yes/no
   # | > ls.fact: factors' list for filter
   
@@ -67,7 +72,73 @@ if(length(which(colnames(ion.data)[-1]%in%meta.samp.data[,1]))!=(dim(ion.data)[2
 }
 
 
-# Function 1: Filter according to factors ---------
+
+# Function 1: Filter according to numerical variables -------------------------------------
+# Allows to delete all elements corresponding to defined values of designated variables.
+if(NUM){
+  
+  # For each numerical variable to filter
+  for(i in 1:length(ls.num)){
+    
+    # Which metadata table is concerned
+    if(ls.num[[i]][1]=="sample"){metadata <- meta.samp.data}else{metadata <- meta.ion.data}
+    
+    # Checking the columns and factors variables
+    numcol <- which(colnames(metadata)==ls.num[[i]][2])
+    if(length(numcol)==0) {
+      err.stock <- c(err.stock,"\n-------",
+                     "\nWarning: no '",ls.num[[i]][2],"' column detected in ",ls.num[[i]][1],
+                     " metadata!","\nFiltering impossible for this variable.\n-------\n") 
+    }else{
+      if(!is.numeric(metadata[,numcol])){
+        err.stock <- c(err.stock,"\n-------",
+                       "\nWarning: column '",ls.num[[i]][2],"' in ",ls.num[[i]][1],
+                       " metadata is not a numerical variable!",
+                       "\nNumerical filtering impossible for this variable.\n-------\n")
+      }else{
+        
+        # Filtering
+        if(ls.num[[i]][3]=="lower"){
+          toremove <- which(metadata[,numcol]<as.numeric(ls.num[[i]][4]))
+          if(length(toremove)!=0){
+            metadata <- metadata[-c(toremove),]
+          }
+        }else{if(ls.num[[i]][3]=="upper"){
+          toremove <- which(metadata[,numcol]>as.numeric(ls.num[[i]][4]))
+          if(length(toremove)!=0){
+            metadata <- metadata[-c(toremove),]
+          }
+        }else{if(ls.num[[i]][3]=="between"){
+          toremove <- (metadata[,numcol]>as.numeric(ls.num[[i]][4]))+(metadata[,numcol]<as.numeric(ls.num[[i]][5]))
+          toremove <- which(toremove==2)
+          if(length(toremove)!=0){
+            metadata <- metadata[-c(toremove),]
+          }
+        }else{if(ls.num[[i]][3]=="extremity"){
+          toremove <- c(which(metadata[,numcol]<as.numeric(ls.num[[i]][4])),
+                        which(metadata[,numcol]>as.numeric(ls.num[[i]][5])))
+          if(length(toremove)!=0){
+            metadata <- metadata[-c(toremove),]
+          }
+        }}}}
+        
+        # Extension to the tables
+        if(ls.num[[i]][1]=="sample"){
+          meta.samp.data <- metadata
+          ion.data <- ion.data[,c(1,which(colnames(ion.data)%in%meta.samp.data[,1]))]
+        }else{
+          meta.ion.data <- metadata
+          ion.data <- ion.data[which(ion.data[,1]%in%meta.ion.data[,1]),]
+        }
+        
+      }}}
+  
+} # end if(NUM)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - - -
+
+
+
+# Function 2: Filter according to factors -------------------------------------------------
 # Allows to delete all elements corresponding to selected value of designated factor.
 if(FACT){
 
@@ -146,6 +217,6 @@ write.table(meta.ion.data, meta.ion.file.out, sep="\t", row.names=FALSE, quote=F
 
 # Typical function call
 #filters(ion.file.in, meta.samp.file.in, meta.ion.file.in, 
-#        FACT, ls.fact,
+#        NUM, ls.num, FACT, ls.fact,
 #        ion.file.out, meta.samp.file.out, meta.ion.file.out)
 

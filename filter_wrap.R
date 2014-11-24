@@ -9,6 +9,7 @@
 # Starting date: 04-09-2014                                                                    #
 # V-1: Restriction of old filter wrapper to Filter according to factors                        #
 # V-1.1: Modification to allow the choice of meta-data table for filtering                     #
+# V-2: Addition of numerical filter                                                            #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix.txt ; sampleMetadata.txt ; variableMetadata.txt                      #
@@ -32,6 +33,18 @@ source_local("filter_script.R")
 
 if(length(args) < 8){ stop("NOT enough argument !!!") }
 
+list_num <- NULL
+if(!is.null(args$factor_col)){
+	for( i in which(names(args)=="num_file") ){
+		if(args[[i+2]] %in% c("lower","upper")){
+		  list_num <- c(list_num, list(c(args[[i]], args[[i+1]], args[[i+2]],args[[i+3]])))
+		}
+		if(args[[i+2]] %in% c("between","extremity")){
+		  list_num <- c(list_num, list(c(args[[i]], args[[i+1]], args[[i+2]],args[[i+3]],args[[i+4]])))
+		}
+	}
+}	
+
 list_fact <- NULL
 if(!is.null(args$factor_col)){
 	for( i in which(names(args)=="qual_file") ){
@@ -40,11 +53,11 @@ if(!is.null(args$factor_col)){
 }	
 
 filters(args$dataMatrix_in, args$sampleMetadata_in, args$variableMetadata_in,
-        args$Factors, list_fact,
+        args$Numeric, list_num, args$Factors, list_fact,
         args$dataMatrix_out, args$sampleMetadata_out, args$variableMetadata_out)
 
 #filters(ion.file.in, meta.samp.file.in, meta.ion.file.in,
-#        FACT, ls.fact,
+#        NUM, ls.num, FACT, ls.fact,
 #        ion.file.out, meta.samp.file.out, meta.ion.file.out)
 
 #delete the parameters to avoid the passage to the next tool in .RData image
