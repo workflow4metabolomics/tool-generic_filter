@@ -14,15 +14,12 @@
 		  Interval "${i.interval_condition.interval}"
 		  #if str($i.interval_condition.interval) == 'lower':
 		    low_value "${i.interval_condition.low_value}"
-		  #end if
-		  #if str($interval_condition.interval) == 'upper':
+		  #elif str($interval_condition.interval) == 'upper':
 		    up_value "${i.interval_condition.up_value}"
-		  #end if
-		  #if str($interval_condition.interval) == 'between':
-		    up_value "${i.interval_condition.up_value}"
+		  #elif str($interval_condition.interval) == 'between':
 		    low_value "${i.interval_condition.low_value}"
-		  #end if
-		  #if str($interval_condition.interval) == 'extremity':
+		    up_value "${i.interval_condition.up_value}"
+		  #elif str($interval_condition.interval) == 'extremity':
 		    low_value "${i.interval_condition.low_value}"
 		    up_value "${i.interval_condition.up_value}"
 		  #end if
