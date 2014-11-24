@@ -1,4 +1,4 @@
-<tool id="filter" name="Filter" version="stat_2014.09.04">
+<tool id="filter" name="Filter" version="stat_2014.11.20">
   <description>Removes elements according to numerical or qualitative values</description>
   <command interpreter="Rscript">
 	filter_wrap.R
@@ -10,19 +10,16 @@
 	  #if str($numeric_condition.Factors) == 'TRUE':
 		#for $i in $numeric_condition.numeric_repeat:
 		  num_file "${i.num_file}"
-		  parm_col_num "${i.parm_col_num}"
+		  parm_col "${i.parm_col_num}"
 		  Interval "${i.interval_condition.interval}"
 		  #if str($i.interval_condition.interval) == 'lower':
 		    low_value "${i.interval_condition.low_value}"
-		  #end if
-		  #if str($interval_condition.interval) == 'upper':
+		  #elif str($interval_condition.interval) == 'upper':
 		    up_value "${i.interval_condition.up_value}"
-		  #end if
-		  #if str($interval_condition.interval) == 'between':
-		    up_value "${i.interval_condition.up_value}"
+		  #elif str($interval_condition.interval) == 'between':
 		    low_value "${i.interval_condition.low_value}"
-		  #end if
-		  #if str($interval_condition.interval) == 'extremity':
+		    up_value "${i.interval_condition.up_value}"
+		  #elif str($interval_condition.interval) == 'extremity':
 		    low_value "${i.interval_condition.low_value}"
 		    up_value "${i.interval_condition.up_value}"
 		  #end if
@@ -74,8 +71,8 @@
 			    <param name="up_value" type="float" label="Remove all values upper than "  optional="true" value="0" help=""/>
 			  </when>
 			  <when value="between">
-			    <param name="up_value" type="float" label="Remove all values between "  optional="true" value="0" help=""/>
-			    <param name="low_value" type="float" label="And "  optional="true" value="1" help=""/>
+			    <param name="low_value" type="float" label="Remove all values between "  optional="true" value="0" help=""/>
+			    <param name="up_value" type="float" label="And "  optional="true" value="1" help=""/>
 			  </when>
 			  <when value="extremity">
 			    <param name="low_value" type="float" label="Remove all values lower than "  optional="true" value="0" help=""/>
