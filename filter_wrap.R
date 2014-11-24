@@ -34,7 +34,7 @@ source_local("filter_script.R")
 if(length(args) < 8){ stop("NOT enough argument !!!") }
 
 list_num <- NULL
-if(!is.null(args$factor_col)){
+if(!is.null(args$parm_col)){
 	for( i in which(names(args)=="num_file") ){
 		if(args[[i+2]] %in% c("lower","upper")){
 		  list_num <- c(list_num, list(c(args[[i]], args[[i+1]], args[[i+2]],args[[i+3]])))
