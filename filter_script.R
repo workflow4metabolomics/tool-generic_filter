@@ -6,6 +6,7 @@
 # V-1.0: Restriction of old filter script to Filter according to factors                       #
 # V-1.1: Choice of metadata table for filtering added ; data check added ; handling of NA ;    #
 #        check for minimum remaining data                                                      #
+# V-1.2: Minor modifications in script layout                                                  #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix ; sampleMetadata ; variableMetadata                                  #
@@ -24,7 +25,7 @@ if(FALSE){
   meta.samp.file.out <- "test/ressources/outputs/ex_data_PROTOCOLE1_fl.txt"  #tab file
   meta.ion.file.out <- "test/ressources/outputs/ex_data_METAION_fl.txt"  #tab file
   
-FACT <- TRUE ; if(FACT){ls.fact <- list(c("centre","C","sample"),c("var2","A","variable"))}else{ls.fact <- NULL}
+FACT <- TRUE ; if(FACT){ls.fact<-list(c("centre","C","sample"),c("var2","A","variable"))}else{ls.fact<-NULL}
   
 }
 
@@ -42,7 +43,7 @@ filters <- function(ion.file.in, meta.samp.file.in, meta.ion.file.in,
   # | > ls.fact: factors' list for filter
   
   
-# Input --------------------------------------------
+# Input -----------------------------------------------------------------------------------
 
 ion.data <- read.table(ion.file.in,sep="\t",header=TRUE)
 meta.samp.data <- read.table(meta.samp.file.in,sep="\t",header=TRUE)
@@ -50,6 +51,7 @@ meta.ion.data <- read.table(meta.ion.file.in,sep="\t",header=TRUE)
 
 # Error vector
 err.stock <- "\n"
+
 
 # Table match check -----------------------------------------------------------------------
 
@@ -108,9 +110,12 @@ if(FACT){
   }}}
 
 } # end if(FACT)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - - -
 
 
-# Check if at least one sample and one variable remain -----------------------------
+
+
+# Check if at least one sample and one variable remain ------------------------------------
 
 if(nrow(meta.samp.data)==0){
   stop("\n /!\\ Your filtering options lead to no more sample in your data matrix!\n",
@@ -122,7 +127,7 @@ if(nrow(meta.ion.data)==0){
        "Think about reducing your number of filter.")
 }
 
-# Output -------------------------------------------
+# Output ----------------------------------------------------------------------------------
 
 # Error checking
 if(length(err.stock)>1){
