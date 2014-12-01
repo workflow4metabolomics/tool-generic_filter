@@ -158,19 +158,21 @@ Parameters
 ----------
 
 
-Factors deletion
-	| If 'yes' (not default) : execution deletes all data samples for which the designated factor (“Column of the factor to remove” button) equals the selected level (“Remove factor when” field).
-	| To delete multiple values of the same factor, it is necessary to add as many times as necessary the corresponding factor via the button “Add new Identify the factors to remove in Sample metadata file”.
+Deleting samples and/or variables according to Qualitative values
+	| If 'yes' (not default) : execution deletes all data samples or variables (according to selection) for which the designated factor ("Name of the column to remove" field) equals the selected level ("Remove factor when" field).
+	| To delete multiple values of the same factor, it is necessary to add as many times as necessary the corresponding factor via the button "Add new Removing a level in factor".
 
-	| *Column of the factor to remove (only if Factors deletion = yes)*
-	| Column number of the factor from which we want to remove a level
+	| *On file (only if 'yes')*
+	| Choice between sample and variable filtering
+	| *Name of the column to remove (only if 'yes')*
+	| Column name of the factor from which we want to remove a level
 	| (This value is set by the field below : "Remove factor when")
-	| *Remove factor when (only if Factors deletion = yes)*
+	| *Remove factor when (only if 'yes')*
 	| Value that you want to deleted from the selected column.
 	| Each line with that value of designated factor will be deleted.
 	|
 
-| Note : these two parameters can be used several times using “Add new Identify the factors to remove in Sample metadata file” button.
+| Note : these two parameters can be used several times using "Add new Identify the factors to remove in Sample metadata file" button.
 |
 
 
