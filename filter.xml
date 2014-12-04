@@ -46,7 +46,7 @@
     <param name="variableMetadata_in" type="data" label="Variable metadata file" help="" format="tabular" />
     	
 	<conditional name="numeric_condition">
-      <param name="Factors" type="select" label="Deleting samples and/or variables according to Numeric values" help="">
+      <param name="Factors" type="select" label="Deleting samples and/or variables according to Numerical values" help="">
           <option value="FALSE">no</option>
           <option value="TRUE">yes</option>
       </param>
@@ -152,16 +152,16 @@ Input files
 +----------------------------+------------+
 
 | 
-| Missing values in numerical columns of data must be coded NA if you want to use the Numeric filter on them. 
+| Missing values in numerical columns of data must be coded NA if you want to use the Numerical filter on them. 
 
 
 ----------
 Parameters
 ----------
 
-Deleting samples and/or variables according to Numeric values:
+Deleting samples and/or variables according to Numerical values:
 	| If 'yes' (not default): execution deletes all samples or variables (according to selection) for which the designated 
-	| numeric parameter ("Name of the column to remove" field) equals the selected range of values (depending on the "Interval of values to remove" chosen).
+	| numerical parameter ("Name of the column to remove" field) equals the selected range of values (depending on the "Interval of values to remove" chosen).
 	| To delete multiple independent intervals of value from the same parameter, it is necessary to add as many times as necessary 
 	| the corresponding column via the button "Add new Identify the parameter to filter".
 
@@ -170,7 +170,7 @@ Deleting samples and/or variables according to Numeric values:
 |
 
 | *Name of the column to filter (only if 'yes')*
-| Column name of the numeric parameter from which we want to remove a range of values.
+| Column name of the numerical parameter from which we want to remove a range of values.
 |
 
 | *Interval of values to remove (only if 'yes')*
@@ -182,13 +182,13 @@ Deleting samples and/or variables according to Numeric values:
 |
 
 | *'Remove all values' + interval chosen (only if 'yes')*
-| Numeric value(s) used as threshold, depending on the type of interval chosen above.
+| Numerical value(s) used as threshold, depending on the type of interval chosen above.
 | Only one value for 'lower' and 'upper'; two values for 'between' and 'extremity'. 
 |
 
 | *Notes:* 
 | - these parameters can be used several times using the "Add new Identify the parameter to filter" button
-| - Numeric filter does not remove NA values; if you want to suppress them, use the Qualitative filter below
+| - Numerical filter does not remove NA values; if you want to suppress them, use the Qualitative filter below
 |
 
 
@@ -213,7 +213,7 @@ Deleting samples and/or variables according to Qualitative values
 
 | *Notes:* 
 | - these parameters can be used several times using the "Add new Removing a level in factor" button
-| - this filter can be used to filter NA in numeric parameters, or to remove a specific numeric value
+| - this filter can be used to filter NA in numerical parameters, or to remove a specific numerical value
 |
 
 
