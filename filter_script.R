@@ -58,18 +58,10 @@ meta.ion.data <- read.table(meta.ion.file.in,sep="\t",header=TRUE)
 err.stock <- "\n"
 
 
-# Table match check -----------------------------------------------------------------------
+# Table match check 
+table.check <- match3(ion.data,meta.samp.data,meta.ion.data)
+check.err(table.check)
 
-if(length(which(ion.data[,1]%in%meta.ion.data[,1]))!=dim(ion.data)[1] ||
-     length(which(meta.ion.data[,1]%in%ion.data[,1]))!=dim(meta.ion.data)[1]){
-  stop("\nData matrix and variable metadata do not match regarding variable identifiers.\n",
-       "Please check your data.")
-}
-if(length(which(colnames(ion.data)[-1]%in%meta.samp.data[,1]))!=(dim(ion.data)[2]-1) ||
-     length(which(meta.samp.data[,1]%in%colnames(ion.data)[-1]))!=dim(meta.samp.data)[1]){
-  stop("\nData matrix and sample metadata do not match regarding sample identifiers.\n",
-       "Please check your data.\nNote: identifiers must not begin by a number.")
-}
 
 
 

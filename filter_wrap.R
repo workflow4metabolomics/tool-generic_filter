@@ -29,6 +29,7 @@ source_local <- function(fname){
 #Import the different functions
 source_local("filter_script.R")
 #source("/usr/local/share/R/filter_script.R")
+source_local("RcheckLibrary.R")
 
 
 if(length(args) < 8){ stop("NOT enough argument !!!") }
