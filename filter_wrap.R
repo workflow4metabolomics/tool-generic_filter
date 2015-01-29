@@ -21,6 +21,7 @@
 library(batch) #necessary for parseCommandArgs function
 args = parseCommandArgs(evaluate=FALSE) #interpretation of arguments given in command line as an R list of objects
 
+if(FALSE){
 source_local <- function(fname){
 	argv <- commandArgs(trailingOnly = FALSE)
 	base_dir <- dirname(substring(argv[grep("--file=", argv)], 8))
@@ -30,6 +31,18 @@ source_local <- function(fname){
 source_local("filter_script.R")
 #source("/usr/local/share/R/filter_script.R")
 source_local("RcheckLibrary.R")
+}
+
+
+source_local <- function(...){
+	argv <- commandArgs(trailingOnly = FALSE)
+	base_dir <- dirname(substring(argv[grep("--file=", argv)], 8))
+	for(i in 1:length(list(...))){
+		source(paste(base_dir, list(...)[[i]], sep="/"))
+	}
+}
+
+source_local("filter_script.R","RcheckLibrary.R")
 
 
 if(length(args) < 8){ stop("NOT enough argument !!!") }
