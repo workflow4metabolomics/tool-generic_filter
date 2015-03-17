@@ -26,8 +26,8 @@ source_local <- function(...){
 	base_dir <- dirname(substring(argv[grep("--file=", argv)], 8))
 	for(i in 1:length(list(...))){source(paste(base_dir, list(...)[[i]], sep="/"))}
 }
-
-source_local("filter_script.R","RcheckLibrary.R")
+#Import the different functions
+source_local("filter_script.R","RcheckLibrary.R","miniTools.R")
 
 
 if(length(args) < 8){ stop("NOT enough argument !!!") }
