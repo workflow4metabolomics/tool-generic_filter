@@ -81,6 +81,8 @@
 			</conditional>
         </repeat>
       </when>
+	  <when value="FALSE">
+	  </when>
     </conditional>
 	
     <conditional name="qualitative_condition">
@@ -98,6 +100,8 @@
             <param name="factors_value" type="text" label="Remove factor when" help="" value="" />
         </repeat>
       </when>
+	  <when value="FALSE">
+	  </when>
     </conditional>
   </inputs>
   
