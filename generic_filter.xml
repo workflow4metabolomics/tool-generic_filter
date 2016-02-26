@@ -1,4 +1,4 @@
-<tool id="generic_filter" name="Generic_Filter" version="2014.12.11">
+<tool id="generic_filter" name="Generic_Filter" version="2016.03.03">
   <description>Removes elements according to numerical or qualitative values</description>
   <command interpreter="Rscript">
 	filter_wrap.R
