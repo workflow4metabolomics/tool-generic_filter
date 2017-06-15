@@ -1,4 +1,4 @@
-<tool id="generic_filter" name="Generic_Filter" version="2017.04">
+<tool id="generic_filter" name="Generic_Filter" version="2017.06">
   <description>Removes elements according to numerical or qualitative values</description>
   <requirements>
 	    <requirement type="package" version="1.1_4">r-batch</requirement>
@@ -113,6 +113,26 @@
     <data name="sampleMetadata_out" label="${tool.name}_${sampleMetadata_in.name}" format="tabular" ></data>
     <data name="variableMetadata_out" label="${tool.name}_${variableMetadata_in.name}" format="tabular" ></data>
   </outputs>
+  
+  <tests>
+	<test>
+	  <param name="dataMatrix_in" value="in_DM1.tabular"/>
+      <param name="sampleMetadata_in" value="in_SM1.tabular"/>
+      <param name="variableMetadata_in" value="in_VM1.tabular"/>
+      <param name="numeric_condition.Factors" value="TRUE"/>
+      <param name="numeric_condition.numeric_repeat.num_file" value="variable"/>
+      <param name="numeric_condition.numeric_repeat.parm_col_num" value="rt"/>
+      <param name="numeric_condition.numeric_repeat.interval_condition.interval" value="lower"/>
+	  <param name="numeric_condition.numeric_repeat.interval_condition.low_value" value="1.2"/>
+      <param name="qualitative_condition.Factors" value="TRUE"/>
+      <param name="qualitative_condition.qualitative_repeat.qual_file" value="sample"/>
+      <param name="qualitative_condition.qualitative_repeat.factor_col" value="Time"/>
+      <param name="qualitative_condition.qualitative_repeat.factors_value" value="3"/>
+      <output name="dataMatrix_out" file="out_DM1.tabular"/>
+      <output name="sampleMetadata_out" file="out_SM1.tabular"/>
+      <output name="variableMetadata_out" file="out_VM1.tabular"/>
+	</test>
+  </tests>
   
   <help>
 
