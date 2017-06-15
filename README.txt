@@ -1,13 +1,9 @@
 ## ****** global_filter environnemnt : ****** ##
-# version December 2014 M Landi / M Petera
-
-## --- PERL compilator / libraries : --- ##
-NA
---
+# version April 2017 M Landi / M Petera
 
 ## --- R bin and Packages : --- ##
 $ R --version
-R version 3.0.2 (2013-05-16) -- "Good Sport"
+R version > 3.0.0 
 Platform: x86_64-redhat-linux-gnu (64-bit)
 
 The dependent libs are :
@@ -28,9 +24,9 @@ filter.png
 --
 
 ## --- DATASETS --- ##
-No data set ! waiting for galaxy pages
+No data set! waiting for galaxy pages
 --
 
 ## --- ??? COMMENTS ??? --- ##
-!WARNING! : Its existence made obsolete the old "Filters" tool
+NA
 --
