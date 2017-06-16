@@ -119,15 +119,19 @@
 	  <param name="dataMatrix_in" value="in_DM1.tabular"/>
       <param name="sampleMetadata_in" value="in_SM1.tabular"/>
       <param name="variableMetadata_in" value="in_VM1.tabular"/>
-      <param name="numeric_condition.Factors" value="TRUE"/>
-      <param name="numeric_condition.numeric_repeat.num_file" value="variable"/>
-      <param name="numeric_condition.numeric_repeat.parm_col_num" value="rt"/>
-      <param name="numeric_condition.numeric_repeat.interval_condition.interval" value="lower"/>
-	  <param name="numeric_condition.numeric_repeat.interval_condition.low_value" value="1.2"/>
-      <param name="qualitative_condition.Factors" value="TRUE"/>
-      <param name="qualitative_condition.qualitative_repeat.qual_file" value="sample"/>
-      <param name="qualitative_condition.qualitative_repeat.factor_col" value="Time"/>
-      <param name="qualitative_condition.qualitative_repeat.factors_value" value="3"/>
+      <conditional name="numeric_condition">
+          <param name="Factors" value="TRUE"/>
+          <param name="numeric_repeat_0|num_file" value="variable"/>
+          <param name="numeric_repeat_0|parm_col_num" value="rt"/>
+          <param name="numeric_repeat_0|interval_condition|interval" value="lower"/>
+	      <param name="numeric_repeat_0|interval_condition|low_value" value="1.2"/>
+	  </conditional>
+      <conditional name="qualitative_condition">
+          <param name="Factors" value="TRUE"/>
+          <param name="qualitative_repeat_0|qual_file" value="sample"/>
+          <param name="qualitative_repeat_0|factor_col" value="Time"/>
+          <param name="qualitative_repeat_0|factors_value" value="3"/>
+      </conditional>
       <output name="dataMatrix_out" file="out_DM1.tabular"/>
       <output name="sampleMetadata_out" file="out_SM1.tabular"/>
       <output name="variableMetadata_out" file="out_VM1.tabular"/>
