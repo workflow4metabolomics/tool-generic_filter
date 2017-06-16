@@ -3,8 +3,8 @@
   <requirements>
 	    <requirement type="package" version="1.1_4">r-batch</requirement>
   </requirements>
-  <command interpreter="Rscript">
-	filter_wrap.R
+  <command>
+	Rscript '$__tool_directory__/filter_wrap.R'
       dataMatrix_in "$dataMatrix_in"
       sampleMetadata_in "$sampleMetadata_in"
       variableMetadata_in "$variableMetadata_in"
@@ -281,4 +281,7 @@ Working example
 Soon see the corresponding "Page"
 
 	</help>
+	<citations>
+        <citation type="doi">10.1093/bioinformatics/btu813</citation>
+    </citations>
 </tool>
