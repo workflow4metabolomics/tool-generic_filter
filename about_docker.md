@@ -13,7 +13,7 @@ Metadata
  About
 -----------
 For all informations about the tool please refer to its [README file](README.txt). 
-For further informations about PhenoMeNal project and the people involved, Please refer to [PhenoMeNal github](https://github.com/phnmnl) main page. 
+For further informations about W4M project and the people involved, Please refer to [W4M github](https://github.com/) and [W4M Docker Hub](https://hub.docker.com/r/workflow4metabolomics/). 
  
 Configuration
 -----------
@@ -37,7 +37,7 @@ Technical description
 ### Create the docker container
 
 ``` bash
-docker build -t docker-registry.phenomenal-h2020.eu/phnmnl/tool-generic_filter:2017.06 .
+docker build -t workflow4metabolomics/tool-generic_filter:2017.06 .
 ```
 
 ### Add the tool in Galaxy
@@ -73,9 +73,9 @@ TODO
 
 License (Dockerfile only!)
 -----------
-This script is under the following license:
-GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+The `Dockerfile` file is under the following license:
  ```
+    GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -89,3 +89,6 @@ GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ```
+
+ * For the Galaxy Tool's license, please refer to its `README` file. 
+ * For the Galaxy Wrapper's license, please refer to its `XML` file. 

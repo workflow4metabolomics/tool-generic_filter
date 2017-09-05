@@ -1,7 +1,7 @@
 <tool id="generic_filter" name="Generic_Filter" version="2017.06">
   <description>Removes elements according to numerical or qualitative values</description>
   <requirements>
-	    <container type="docker">test/tool-generic_filter:2017.06</container>
+	    <container type="docker">workflow4metabolomics/tool-generic_filter:2017.06</container>
   </requirements>
   <command>
 	/usr/bin/Rscript /scripts/filter_wrap.R
