@@ -10,10 +10,10 @@ Metadata
  * **@date creation**: 2017/09/04
  * **@main usage**: create a Docker environment / container for "Tool - Generic Filter"
 
- About
+About
 -----------
 For all informations about the tool please refer to its [README file](README.txt). 
-For further informations about W4M project and the people involved, Please refer to [W4M github](https://github.com/) and [W4M Docker Hub](https://hub.docker.com/r/workflow4metabolomics/). 
+For further informations about Workflow4Metabolomics project and the people involved, please refer to [workflow4metabolomics.org](http://workflow4metabolomics.org/), [W4M github](https://github.com/workflow4metabolomics/) and [W4M Docker Hub](https://hub.docker.com/r/workflow4metabolomics/). 
  
 Configuration
 -----------
@@ -67,27 +67,29 @@ Then add this XML resource in your `config/tool_conf.xml` file. For example:
     </section>
 ```
 
-Notes
------------
-TODO
-
 License (Dockerfile only!)
 -----------
 The `Dockerfile` file is under the following license:
- ```
-    GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
- 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
- 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
+    Copyright (c) 2017 workflow4metabolomics.org / INRA
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 ```
 
  * For the Galaxy Tool's license, please refer to its `README` file. 
