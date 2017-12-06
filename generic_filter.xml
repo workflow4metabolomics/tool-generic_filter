@@ -1,7 +1,10 @@
-<tool id="generic_filter" name="Generic_Filter" version="2016.03.03">
+<tool id="generic_filter" name="Generic_Filter" version="2017.06">
   <description>Removes elements according to numerical or qualitative values</description>
-  <command interpreter="Rscript">
-	filter_wrap.R
+  <requirements>
+	    <requirement type="package" version="1.1_4">r-batch</requirement>
+  </requirements>
+  <command>
+	Rscript '$__tool_directory__/filter_wrap.R'
       dataMatrix_in "$dataMatrix_in"
       sampleMetadata_in "$sampleMetadata_in"
       variableMetadata_in "$variableMetadata_in"
@@ -111,6 +114,30 @@
     <data name="variableMetadata_out" label="${tool.name}_${variableMetadata_in.name}" format="tabular" ></data>
   </outputs>
   
+  <tests>
+	<test>
+	  <param name="dataMatrix_in" value="in_DM1.tabular"/>
+      <param name="sampleMetadata_in" value="in_SM1.tabular"/>
+      <param name="variableMetadata_in" value="in_VM1.tabular"/>
+      <conditional name="numeric_condition">
+          <param name="Factors" value="TRUE"/>
+          <param name="numeric_repeat_0|num_file" value="variable"/>
+          <param name="numeric_repeat_0|parm_col_num" value="rt"/>
+          <param name="numeric_repeat_0|interval_condition|interval" value="lower"/>
+	      <param name="numeric_repeat_0|interval_condition|low_value" value="1.2"/>
+	  </conditional>
+      <conditional name="qualitative_condition">
+          <param name="Factors" value="TRUE"/>
+          <param name="qualitative_repeat_0|qual_file" value="sample"/>
+          <param name="qualitative_repeat_0|factor_col" value="Time"/>
+          <param name="qualitative_repeat_0|factors_value" value="3"/>
+      </conditional>
+      <output name="dataMatrix_out" file="out_DM1.tabular"/>
+      <output name="sampleMetadata_out" file="out_SM1.tabular"/>
+      <output name="variableMetadata_out" file="out_VM1.tabular"/>
+	</test>
+  </tests>
+  
   <help>
 
 .. class:: infomark
@@ -136,7 +163,7 @@ Workflow position
 -----------------
 
 
-.. image:: ./static/images/metabolomics/filter.png
+.. image:: filter.png
         :width: 800
 
 
@@ -254,4 +281,7 @@ Working example
 Soon see the corresponding "Page"
 
 	</help>
+	<citations>
+        <citation type="doi">10.1093/bioinformatics/btu813</citation>
+    </citations>
 </tool>
