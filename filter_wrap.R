@@ -19,6 +19,23 @@
 
 
 library(batch) #necessary for parseCommandArgs function
+
+# Constants
+argv <- commandArgs(trailingOnly = FALSE)
+script.path <- sub("--file=","",argv[grep("--file=",argv)])
+prog.name <- basename(script.path)
+
+# Help
+if (length(grep('-h', argv)) >0) {
+	cat("Usage:", prog.name,
+      "dataMatrix_in myDataMatrix.tsv",
+      "sampleMetadata_in mySampleMetadata.tsv",
+      "variableMetadata_in myVariableMetadata.tsv",
+      "...",
+		"\n")
+	quit(status = 0)
+}
+
 args = parseCommandArgs(evaluate=FALSE) #interpretation of arguments given in command line as an R list of objects
 
 source_local <- function(...){
