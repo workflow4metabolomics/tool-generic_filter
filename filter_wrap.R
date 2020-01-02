@@ -10,6 +10,7 @@
 # V-1: Restriction of old filter wrapper to Filter according to factors                        #
 # V-1.1: Modification to allow the choice of meta-data table for filtering                     #
 # V-2: Addition of numerical filter                                                            #
+# V-2.5: -h option + additional information in stdout                                          #
 #                                                                                              #
 #                                                                                              #
 # Input files: dataMatrix.txt ; sampleMetadata.txt ; variableMetadata.txt                      #
@@ -49,6 +50,14 @@ source_local("filter_script.R","RcheckLibrary.R","miniTools.R")
 
 if(length(args) < 8){ stop("NOT enough argument !!!") }
 
+
+cat('\nJob starting time:\n',format(Sys.time(), "%a %d %b %Y %X"),
+'\n\n--------------------------------------------------------------------', 
+'\nParameters used in "Generic Filter":\n\n')
+print(args)
+cat('--------------------------------------------------------------------\n\n')
+
+
 list_num <- NULL
 if(!is.null(args$parm_col)){
 	for( i in which(names(args)=="num_file") ){
@@ -75,6 +84,14 @@ filters(args$dataMatrix_in, args$sampleMetadata_in, args$variableMetadata_in,
 #filters(ion.file.in, meta.samp.file.in, meta.ion.file.in,
 #        NUM, ls.num, FACT, ls.fact,
 #        ion.file.out, meta.samp.file.out, meta.ion.file.out)
+
+
+cat('\n--------------------------------------------------------------------',
+'\nInformation about R (version, Operating System, attached or loaded packages):\n\n')
+sessionInfo()
+cat('--------------------------------------------------------------------\n',
+'\nJob ending time:\n',format(Sys.time(), "%a %d %b %Y %X"))
+
 
 #delete the parameters to avoid the passage to the next tool in .RData image
 rm(args)
