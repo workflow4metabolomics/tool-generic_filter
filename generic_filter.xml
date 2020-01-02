@@ -1,4 +1,4 @@
-<tool id="generic_filter" name="Generic_Filter" version="2017.06">
+<tool id="generic_filter" name="Generic_Filter" version="2020.01">
   <description>Removes elements according to numerical or qualitative values</description>
   <requirements>
 	    <requirement type="package" version="1.1_4">r-batch</requirement>
@@ -142,12 +142,14 @@
 
 .. class:: infomark
 
-**Authors** Marion Landi and Melanie Petera
+**Authors:** 
+Melanie Petera for original R code - Marion Landi and Melanie Petera for original Galaxy wrapper
+**Maintainer:** Melanie Petera (PFEM - INRAE - MetaboHUB)
 
 ---------------------------------------------------
 
 ==============
-Generic_Filter
+Generic Filter
 ==============
 
 -----------
@@ -164,7 +166,7 @@ Workflow position
 
 
 .. image:: filter.png
-        :width: 800
+        :width: 700
 
 
 
@@ -175,7 +177,7 @@ Input files
 +----------------------------+------------+
 | Parameter : num + label    |   Format   |
 +============================+============+
-| 1 : Data Matrix file       |   tabular  |
+| 1 : Data matrix file       |   tabular  |
 +----------------------------+------------+
 | 2 : Sample metadata file   |   tabular  |
 +----------------------------+------------+
@@ -194,7 +196,7 @@ Deleting samples and/or variables according to Numerical values:
 	| If 'yes' (not default): execution deletes all samples or variables (according to selection) for which the designated 
 	| numerical parameter ("Name of the column to remove" field) equals the selected range of values (depending on the "Interval of values to remove" chosen).
 	| To delete multiple independent intervals of value from the same parameter, it is necessary to add as many times as necessary 
-	| the corresponding column via the button "Add new Identify the parameter to filter".
+	| the corresponding column via the "Insert Identify the parameter to filter" button.
 
 | *On file (only if 'yes')*
 | Choice between sample and variable filtering (referring to the input file containing the factor).
@@ -218,7 +220,7 @@ Deleting samples and/or variables according to Numerical values:
 |
 
 | *Notes:* 
-| - these parameters can be used several times using the "Add new Identify the parameter to filter" button
+| - these parameters can be used several times using the "Insert Identify the parameter to filter" button
 | - Numerical filter does not remove NA values; if you want to suppress them, use the Qualitative filter below
 |
 
@@ -227,7 +229,7 @@ Deleting samples and/or variables according to Qualitative values
 	| If 'yes' (not default): execution deletes all data samples or variables (according to selection) for which the designated
 	| factor ("Name of the column to remove" field) equals the selected level ("Remove factor when" field).
 	| To delete multiple values of the same factor, it is necessary to add as many times as necessary the corresponding factor 
-	| via the button "Add new Removing a level in factor".
+	| via the "Insert Removing a level in factor" button.
 	
 | *On file (only if 'yes')*
 | Choice between sample and variable filtering (referring to the input file containing the factor).
@@ -243,7 +245,7 @@ Deleting samples and/or variables according to Qualitative values
 |
 
 | *Notes:* 
-| - these parameters can be used several times using the "Add new Removing a level in factor" button
+| - these parameters can be used several times using the "Insert Removing a level in factor" button
 | - this filter can be used to filter NA in numerical parameters, or to remove a specific numerical value
 |
 
@@ -255,7 +257,7 @@ Output files
 
 dataMatrix
 	| tabular output
-	| Identical to the input Data Matrix file with the sample columns and variable lines deleted according to specified filters
+	| Identical to the input Data matrix file with the sample columns and variable lines deleted according to specified filters
 	|
 
 sampleMetadata
@@ -271,14 +273,18 @@ variableMetadata
 
 ---------------------------------------------------
 
----------------
-Working example
----------------
+----------------------
+Additional information
+----------------------
 
 
 .. class:: warningmark
 
-Soon see the corresponding "Page"
+For more information about input files, refer to the corresponding "W4M HowTo" page:
+ | `W4M table format for Galaxy &lt;http://workflow4metabolomics.org/sites/workflow4metabolomics.org/files/files/w4m_TableFormatForGalaxy_150908.pdf&gt;`_
+ |
+
+
 
 	</help>
 	<citations>
