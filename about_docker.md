@@ -9,8 +9,8 @@
 
 ## About
 
-For all informations about the tool please refer to its [README file](README.txt). 
-For further informations about Workflow4Metabolomics project and the people involved, please refer to [workflow4metabolomics.org](http://workflow4metabolomics.org/), [W4M github](https://github.com/workflow4metabolomics/) and [W4M Docker Hub](https://hub.docker.com/r/workflow4metabolomics/). 
+For all informations about the tool please refer to its [README file](README.md). 
+For further information about Workflow4Metabolomics project and the people involved, please refer to [workflow4metabolomics.org](http://workflow4metabolomics.org/), [W4M github](https://github.com/workflow4metabolomics/) and [W4M Docker Hub](https://hub.docker.com/r/workflow4metabolomics/). 
  
 ## Configuration
 
@@ -20,12 +20,12 @@ For further informations about Workflow4Metabolomics project and the people invo
 
 ### Warning:
  * These scripts are provided WITHOUT ANY WARRANTY. 
- * These scripts should be run by an administrator system (expert).
+ * These scripts should be run by a system administrator (expert).
 
 ## Services provided
 
 Build a docker container for "Tool - Generic Filter" Galaxy Tool.
-Provide a XML Galaxy wrapper: [generic_filter.docker.xml](generic_filter.docker.xml)
+Provide a XML Galaxy wrapper: generic_filter.docker.xml
  
 ## Technical description
 
@@ -53,7 +53,7 @@ If required, add in `config/job_conf.xml` file the minimal docker options:
 
 For more options please refer to the [official documentation](https://galaxyproject.org/admin/tools/docker/).
 
-Copy or create a symbolic link of [generic_filter.docker.xml](generic_filter.docker.xml) file into your `tools/docker` directory (feel free to create or change the target directory). 
+Copy or create a symbolic link of generic_filter.docker.xml file into your `tools/docker` directory (feel free to create or change the target directory). 
 Then add this XML resource in your `config/tool_conf.xml` file. For example:
 
 ``` xml
@@ -64,7 +64,7 @@ Then add this XML resource in your `config/tool_conf.xml` file. For example:
 
 ### Modify this tool's XML config. file
 
-replace this sections:
+replace these sections:
 ```xml
   <!-- requirements -->
   <requirements>
@@ -79,7 +79,7 @@ replace this sections:
       <!-- ... -->
 ```
 
-by this sections:
+by these sections:
 ```xml
   <!-- requirements -->
   <requirements>

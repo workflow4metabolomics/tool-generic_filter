@@ -28,7 +28,7 @@ Configuration
 
 ### Docker:
  * Use of this tool in a docker context:
-Information is provided in the (about_docker.md file)[about_docker.md].
+Information is provided in the [about_docker.md file](about_docker.md).
 
 
 Technical description
