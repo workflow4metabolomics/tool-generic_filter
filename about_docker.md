@@ -1,22 +1,18 @@
-Tool - Generic Filter [Dockerfile]
-=======
+# Tool - Generic Filter [Dockerfile]
 
-Metadata
------------
 
- * **@name**: Tool - Generic Filter [Dockerfile]
- * **@version**: 0.1
- * **@authors**: Nils Paulhe <nils.paulhe@inra.fr> (Only the docker part)
- * **@date creation**: 2017/09/04
- * **@main usage**: create a Docker environment / container for "Tool - Generic Filter"
+## Metadata
 
-About
------------
+- **@authors**: Nils Paulhe <nils.paulhe@inra.fr> (Only the docker part)
+- **@date creation**: `2017-09-04`
+- **@main usage**: create a Docker environment / container for "Tool - Generic Filter"
+
+## About
+
 For all informations about the tool please refer to its [README file](README.txt). 
 For further informations about Workflow4Metabolomics project and the people involved, please refer to [workflow4metabolomics.org](http://workflow4metabolomics.org/), [W4M github](https://github.com/workflow4metabolomics/) and [W4M Docker Hub](https://hub.docker.com/r/workflow4metabolomics/). 
  
-Configuration
------------
+## Configuration
 
 ### Requirement:
  * Docker Engine, Docker skills
@@ -26,13 +22,12 @@ Configuration
  * These scripts are provided WITHOUT ANY WARRANTY. 
  * These scripts should be run by an administrator system (expert).
 
-Services provided
------------
+## Services provided
+
 Build a docker container for "Tool - Generic Filter" Galaxy Tool.
 Provide a XML Galaxy wrapper: [generic_filter.docker.xml](generic_filter.docker.xml)
  
-Technical description
------------
+## Technical description
 
 ### Create the docker container
 
@@ -67,8 +62,38 @@ Then add this XML resource in your `config/tool_conf.xml` file. For example:
     </section>
 ```
 
-License (Dockerfile only!)
------------
+### Modify this tool's XML config. file
+
+replace this sections:
+```xml
+  <!-- requirements -->
+  <requirements>
+    <requirement type="package" version="1.1_4">r-batch</requirement>
+  </requirements>
+  
+  <!-- cmd -->
+  <command>
+    Rscript '$__tool_directory__/filter_wrap.R'
+      dataMatrix_in "$dataMatrix_in"
+      sampleMetadata_in "$sampleMetadata_in"
+      <!-- ... -->
+```
+
+by this sections:
+```xml
+  <!-- requirements -->
+  <requirements>
+    <container type="docker">workflow4metabolomics/tool-generic_filter:2017.06</container>
+  </requirements>
+  
+  <!-- cmd -->
+    /usr/bin/Rscript /scripts/filter_wrap.R
+      dataMatrix_in "$dataMatrix_in"
+      <!-- ... -->
+```
+
+## License (Dockerfile only!)
+
 The `Dockerfile` file is under the following license:
 ```
     Copyright (c) 2017 workflow4metabolomics.org / INRA
@@ -92,5 +117,5 @@ The `Dockerfile` file is under the following license:
     SOFTWARE.
 ```
 
- * For the Galaxy Tool's license, please refer to its `README` file. 
- * For the Galaxy Wrapper's license, please refer to its `XML` file. 
+- For the Galaxy Tool's license, please refer to its `README` file. 
+- For the Galaxy Wrapper's license, please refer to its `XML` file. 
