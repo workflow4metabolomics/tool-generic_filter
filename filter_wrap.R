@@ -11,7 +11,7 @@
 # V-1.1: Modification to allow the choice of meta-data table for filtering                     #
 # V-2: Addition of numerical filter                                                            #
 # V-2.5: -h option + additional information in stdout                                          #
-#                                                                                              #
+# V-2.6: The tool does not rely on the batch package anymore to parse its command line.        #                                                                                #
 #                                                                                              #
 # Input files: dataMatrix.txt ; sampleMetadata.txt ; variableMetadata.txt                      #
 # Output files: dataMatrix.txt ; sampleMetadata.txt ; variableMetadata.txt                     #
@@ -19,7 +19,17 @@
 ################################################################################################
 
 
-library(batch) #necessary for parseCommandArgs function
+parse_args <- function() {
+  args <- commandArgs()
+  start <- which(args == "--args")[1] + 1
+  if (is.na(start)) {
+    return(list())
+  }
+  seq_by2 <- seq(start, length(args), by = 2)
+  result <- as.list(args[seq_by2 + 1])
+  names(result) <- args[seq_by2]
+  return(result)
+}
 
 # Constants
 argv <- commandArgs(trailingOnly = FALSE)
@@ -37,7 +47,7 @@ if (length(grep('-h', argv)) >0) {
 	quit(status = 0)
 }
 
-args = parseCommandArgs(evaluate=FALSE) #interpretation of arguments given in command line as an R list of objects
+args <- parse_args() #interpretation of arguments given in command line as an R list of objects
 
 source_local <- function(...){
 	argv <- commandArgs(trailingOnly = FALSE)
